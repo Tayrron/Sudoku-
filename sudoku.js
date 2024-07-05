@@ -1,8 +1,36 @@
+const fs = require('fs');
+
 function read() {
-  /**
-   * Прочесть файл puzzles.txt в кодировке 'utf-8' и вернуть эти данные из функции
-   */
+  //Прочесть файл puzzles.txt в кодировке 'utf-8' и вернуть эти данные из функции
+
+  const readMass = fs.readFileSync('C:/Users/User/Desktop/sudoku_solver/project-sudoku/puzzles.txt', 'utf-8')
+  let sudokuField1st = readMass.slice(0, 81)
+
+  let massived = sudokuField1st.match(/.{1}/g)
+
+  const splitedSudoku = (arr, chunk) => 
+    Array.from( { length: Math.ceil ( arr.length / chunk ) }, (v, i) => 
+      arr.slice(i * chunk , i * chunk + chunk ))
+
+  let SudokuArray = splitedSudoku(sudokuField1st.split(), 9)
+
+  return SudokuArray
 }
+
+console.log(splitedSudoku(massived, 9));
+console.log(splitedSudoku(sudokuField1st.split(), 9));
+
+let sudokuField1st = readMass.slice(0, 81)
+
+let massived = sudokuField1st.match(/.{1}/g)
+
+const splitedSudoku = (arr, chunk) => 
+  Array.from( { length: Math.ceil ( arr.length / chunk ) }, (v, i) => 
+    arr.slice(i * chunk , i * chunk + chunk ))
+
+console.log(splitedSudoku(massived, 9));
+console.log(splitedSudoku(sudokuField1st.split(), 9));
+
 
 function solve() {
   /**
